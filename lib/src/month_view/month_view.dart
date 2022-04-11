@@ -108,6 +108,8 @@ class MonthView<T> extends StatefulWidget {
   /// This method will be called when user long press on calendar.
   final DatePressCallback? onDateLongPress;
 
+  final ScrollPhysics? physics;
+
   /// Main [Widget] to display month view.
   const MonthView({
     Key? key,
@@ -129,6 +131,7 @@ class MonthView<T> extends StatefulWidget {
     this.onCellTap,
     this.onEventTap,
     this.onDateLongPress,
+    this.physics,
   }) : super(key: key);
 
   @override
@@ -263,6 +266,7 @@ class MonthViewState<T> extends State<MonthView<T>> {
               child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: _onPageChange,
+                physics: widget.physics,
                 itemBuilder: (_, index) {
                   final date = DateTime(_minDate.year, _minDate.month + index);
                   return Column(

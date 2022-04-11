@@ -129,6 +129,8 @@ class DayView<T> extends StatefulWidget {
   /// This method will be called when user long press on calendar.
   final DatePressCallback? onDateLongPress;
 
+  final ScrollPhysics? physics;
+
   /// Main widget for day view.
   const DayView({
     Key? key,
@@ -156,6 +158,7 @@ class DayView<T> extends StatefulWidget {
     this.scrollOffset = 0.0,
     this.onEventTap,
     this.onDateLongPress,
+    this.physics,
   })  : assert((timeLineOffset) >= 0,
             "timeLineOffset must be greater than or equal to 0"),
         super(key: key);
@@ -307,6 +310,7 @@ class DayViewState<T> extends State<DayView<T>> {
                       itemCount: _totalDays,
                       controller: _pageController,
                       onPageChanged: _onPageChange,
+                      physics: widget.physics,
                       itemBuilder: (_, index) {
                         final date = DateTime(_minDate.year, _minDate.month,
                             _minDate.day + index);

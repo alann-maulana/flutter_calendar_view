@@ -128,6 +128,8 @@ class WeekView<T> extends StatefulWidget {
   /// This method will be called when user long press on calendar.
   final DatePressCallback? onDateLongPress;
 
+  final ScrollPhysics? physics;
+
   /// Main widget for week view.
   const WeekView({
     Key? key,
@@ -157,6 +159,7 @@ class WeekView<T> extends StatefulWidget {
     this.onDateLongPress,
     this.weekDays = WeekDays.values,
     this.showWeekends = true,
+    this.physics,
   }) : super(key: key);
 
   @override
@@ -334,6 +337,7 @@ class WeekViewState<T> extends State<WeekView<T>> {
                     itemCount: _totalWeeks,
                     controller: _pageController,
                     onPageChanged: _onPageChange,
+                    physics: widget.physics,
                     itemBuilder: (_, index) {
                       final dates = _minDate
                           .add(Duration(days: index * DateTime.daysPerWeek))
